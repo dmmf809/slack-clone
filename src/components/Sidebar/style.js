@@ -44,6 +44,9 @@ export const SidebarInfo = styled.div`
   }
 
   > h3 > .MuiSvgIcon-root {
+    font-size: 14px;
+    margin-top: 1px;
+    margin-right: 2px;
     color: #345414;
   }
 `;
@@ -58,15 +61,18 @@ export const SidebarOptionsContainer = styled.div`
   :hover {
     opacity: 0.9;
     background-color: #340e36;
+  }
 
-    > h3 {
-      font-weight: 500;
-    }
+  > h3 {
+    font-weight: 500;
+  }
 
-    > h3 > span {
-      padding: 15px;
-    }
+  > h3 > span {
+    padding: 15px;
   }
 `;
 
-export const SidebarOptionChannel = styled.div``;
+export const SidebarOptionChannel = styled.h3`
+  padding: 10px 0;
+  font-weight: 300;
+`;
