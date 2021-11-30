@@ -13,19 +13,20 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
 import { useCollection } from 'react-firebase-hooks/firestore';
-import { db } from '../../firebase';
+import { auth, db } from '../../firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Sidebar = () => {
   //Firebase hooks
-  const [channels, loading, error] = useCollection(db.collection('rooms'));
-
+  const [channels] = useCollection(db.collection('rooms'));
+  const [user] = useAuthState(auth);
   return (
     <SidebarContainer>
       <SidebarHeader>
         <SidebarInfo>
-          <h2>Hi</h2>
+          <h2>Slack HQ</h2>
           <h3>
-            <FiberManualRecordIcon /> John Doe
+            <FiberManualRecordIcon /> {user?.displayName}
           </h3>
         </SidebarInfo>
         <CreateIcon />
