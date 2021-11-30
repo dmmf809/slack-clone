@@ -15,6 +15,7 @@ import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 import { db } from '../../firebase';
 import Message from './Message';
 import { useEffect, useRef } from 'react';
+import { AppLoading, AppLoadingContents } from '../../style';
 
 const Chat = () => {
   const chatRef = useRef(null);
@@ -32,11 +33,25 @@ const Chat = () => {
         .collection('messages')
         .orderBy('timeStamp', 'asc')
   );
+
   //When the messages is still loading and the roomId changes, fire this useEffect
   useEffect(() => {
     chatRef?.current?.scrollIntoView({
       behavior: 'smooth',
     });
+
+    if (loading) {
+      return (
+        <AppLoading>
+          <AppLoadingContents>
+            <img
+              src={process.env.PUBLIC_URL + 'assets/slack-loading.gif'}
+              alt='Loading'
+            />
+          </AppLoadingContents>
+        </AppLoading>
+      );
+    }
   }, [roomId, loading]);
 
   return (
